@@ -73,6 +73,7 @@
 		8B3B12411C0E1C45007A0F44 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B3B12401C0E1C45007A0F44 /* MessageUI.framework */; };
 		8B3B12431C0E1D01007A0F44 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B3B12421C0E1D01007A0F44 /* CFNetwork.framework */; };
 		8B3B12451C0E1D0F007A0F44 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B3B12441C0E1D0F007A0F44 /* Security.framework */; };
+		8B8A2FE11C0E475D00B7FFFD /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B8A2FE01C0E475D00B7FFFD /* Default-568h@2x.png */; };
 		8BC1EB6B1770FA7B00640A24 /* ChooseAccountController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC1EB6A1770FA7B00640A24 /* ChooseAccountController.m */; };
 		8BCFC6D41C0E3C0300FFA35B /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = 8BCFC6B21C0E3C0300FFA35B /* about.html */; };
 		8BCFC6D51C0E3C0300FFA35B /* AvailableServers.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8BCFC6B31C0E3C0300FFA35B /* AvailableServers.plist */; };
@@ -205,6 +206,7 @@
 		8B3B12441C0E1D0F007A0F44 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		8B3C1FC917750540003AE8EA /* es */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = es; path = es.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		8B6D49EE1C061F4700D40852 /* PersonalInfoDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonalInfoDelegate.h; sourceTree = "<group>"; };
+		8B8A2FE01C0E475D00B7FFFD /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		8BC1EB691770FA7B00640A24 /* ChooseAccountController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseAccountController.h; sourceTree = "<group>"; };
 		8BC1EB6A1770FA7B00640A24 /* ChooseAccountController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseAccountController.m; sourceTree = "<group>"; };
 		8BCFC6B21C0E3C0300FFA35B /* about.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = about.html; path = "Respond-Panama/Supporting Files/about.html"; sourceTree = SOURCE_ROOT; };
@@ -451,6 +453,7 @@
 		69ED14E816B2EE4C00232245 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8B8A2FE01C0E475D00B7FFFD /* Default-568h@2x.png */,
 				8BCFC6B21C0E3C0300FFA35B /* about.html */,
 				8BCFC6B31C0E3C0300FFA35B /* AvailableServers.plist */,
 				8BCFC6B41C0E3C0300FFA35B /* de.lproj */,
@@ -609,6 +612,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				69ED14FB16B2EE4C00232245 /* MainStoryboard.storyboard in Resources */,
+				8B8A2FE11C0E475D00B7FFFD /* Default-568h@2x.png in Resources */,
 				8B2AC2511C0E431600FDB19B /* 114X114-Respond.png in Resources */,
 				692D043116C1B0B60011C190 /* cross-hairs-small-black-cropped.png in Resources */,
 				8BCFC6E21C0E3C0300FFA35B /* Icon@2x.png in Resources */,
@@ -852,7 +856,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Respond-Panama/Supporting Files/RESPOND Panama-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Respond-Panama/Supporting Files/RESPOND Panama-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "RESPOND Panama";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -867,7 +871,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Respond-Panama/Supporting Files/RESPOND Panama-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Respond-Panama/Supporting Files/RESPOND Panama-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "RESPOND Panama";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
