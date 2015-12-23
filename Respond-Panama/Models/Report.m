@@ -50,10 +50,12 @@ NSString * const kPostData          = @"postData";
         NSString *lastname  = [prefs stringForKey:kOpen311_LastName];
         NSString *email     = [prefs stringForKey:kOpen311_Email];
         NSString *phone     = [prefs stringForKey:kOpen311_Phone];
+        NSString *cedula     = [prefs stringForKey:kOpen311_Cedula];
         if (firstname != nil) { _postData[kOpen311_FirstName] = firstname; }
         if (lastname  != nil) { _postData[kOpen311_LastName]  = lastname; }
         if (email     != nil) { _postData[kOpen311_Email]     = email; }
         if (phone     != nil) { _postData[kOpen311_Phone]     = phone; }
+        if (cedula    != nil) { _postData[kOpen311_Cedula]    = cedula; }
     }
     return self;
 }
@@ -115,7 +117,7 @@ NSString * const kPostData          = @"postData";
 - (AFHTTPSessionManager *)getHttpClient
 {
     if ([httpClient baseURL] == NULL) {
-        httpClient = [[AFHTTPSessionManager init ] initWithBaseURL:[NSURL URLWithString:[_server objectForKey:kOpen311_Url]]];
+        httpClient = [[[AFHTTPSessionManager alloc ] init ] initWithBaseURL:[NSURL URLWithString:[_server objectForKey:kOpen311_Url]]];
     }
     return httpClient;
 }
@@ -137,6 +139,7 @@ NSString * const kPostData          = @"postData";
     Open311 *open311 = [Open311 sharedInstance];
     
     AFHTTPSessionManager *client = [self getHttpClient];
+    client.responseSerializer = [AFHTTPResponseSerializer serializer];
     
     [client GET:[NSString stringWithFormat:@"requests/%@.json", serviceRequestId]
          parameters:[self getEndpointParameters]

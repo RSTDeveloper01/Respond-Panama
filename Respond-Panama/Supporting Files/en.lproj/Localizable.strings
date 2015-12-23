@@ -29,6 +29,7 @@
 "other"="Other";
 "name"="Name";
 "url"="Url";
+"share"="Share";
 "jurisdiction_id"="Jurisdiction ID";
 "api_key"="Api Key";
 "format"="Format";
@@ -58,3 +59,4 @@
 "failure_loading_services"="Failed to load service information";
 "failure_posting_service"="Posting report failed";
 "error_403"="This app does not have permission";
+"info_topic_header"="Informational Topic";

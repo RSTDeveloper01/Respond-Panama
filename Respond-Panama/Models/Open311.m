@@ -38,7 +38,6 @@ NSString * const kNotification_PostFailed       = @"postFailed";
     CLLocationManager *locationManager;
     CLGeocoder *geocoder;
     CLPlacemark *placemark;
-   // AFHTTPClient *httpClient;
     AFHTTPSessionManager *httpClient;
     NSDictionary *currentServer;
     NSArray *serviceList;
@@ -79,9 +78,8 @@ SHARED_SINGLETON(Open311);
     
     
     httpClient = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:[server objectForKey:kOpen311_Url]]];
+   
     //[self loadServiceList];
-    
-    
     
     [self loadAccountList];
 }
@@ -239,7 +237,7 @@ SHARED_SINGLETON(Open311);
         }
     }
     NSSortDescriptor *aToZ= [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES];
-    [_groups sortUsingDescriptors:[NSArray arrayWithObject:aToZ]];
+    //[_groups sortUsingDescriptors:[NSArray arrayWithObject:aToZ]];
     [_services addObjectsFromArray:serviceList];
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotification_ServiceListReady object:self];
 }
@@ -304,37 +302,51 @@ SHARED_SINGLETON(Open311);
 {
     _selectedCity=[account objectForKey:@"account_name"];
     
-    if(![[account objectForKey:kRst_AccountURL] isEqualToString:@""]){
-        
-        NSArray *parts=[[account objectForKey:kRst_AccountURL]componentsSeparatedByString:@"."];
-        NSString *jurisdictionId = [[[parts objectAtIndex:0]componentsSeparatedByString:@"//"]objectAtIndex:1];
-        NSDictionary* server= [[NSDictionary alloc]initWithObjectsAndKeys:
-                           [NSNumber numberWithBool:TRUE],kOpen311_SupportsMedia,
-                           @"json",kOpen311_Format,
-                           @"http://respond-open311api.respondcrm.com/Open311API.svc/",kOpen311_Url,
-                         @"00000000-0000-0000-0000-000000000000",kOpen311_ApiKey,
-                           [account objectForKey:kRst_AccountName],kOpen311_Name,
-                           jurisdictionId,kOpen311_Jurisdiction,nil];
-        [[Preferences sharedInstance] setCurrentServer:server];
-        currentServer=server;
-        [self refreshEndpointParams];
-        httpClient = [[AFHTTPSessionManager alloc ] initWithBaseURL:[NSURL URLWithString:[server objectForKey:kOpen311_Url]]];
-    }
-    
-    else{
-        NSDictionary* server= [[NSDictionary alloc]initWithObjectsAndKeys:
-                               [NSNumber numberWithBool:TRUE],kOpen311_SupportsMedia,
-                               @"json",kOpen311_Format,
-                               @"http://respond-open311api.respondcrm.com/Open311API.svc/",kOpen311_Url,
-                               @"00000000-0000-0000-0000-000000000000",kOpen311_ApiKey,
-                               [account objectForKey:kRst_AccountName],kOpen311_Name,
-                               @"municipiospr",kOpen311_Jurisdiction,nil];
-        [[Preferences sharedInstance] setCurrentServer:server];
-        currentServer=server;
-        [self refreshEndpointParams];
-        httpClient = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:[server objectForKey:kOpen311_Url]]];
-    }
-    
+    NSDictionary* server = [[NSDictionary alloc]initWithObjectsAndKeys:
+                            [NSNumber numberWithBool:TRUE],kOpen311_SupportsMedia,
+                            @"json",kOpen311_Format,
+                            @"http://10.252.70.35:300/Open311API.svc/",kOpen311_Url,
+                            @"00000000-0000-0000-0000-000000000000",kOpen311_ApiKey,
+                            @"Panama",kOpen311_Name,
+                            @"RespondPanamaDev",kOpen311_Jurisdiction,nil];
+    [[Preferences sharedInstance] setCurrentServer:server];
+    currentServer=server;
+    [self refreshEndpointParams];
+    httpClient = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:[server objectForKey:kOpen311_Url]]];
+
+//
+//    
+//    if(![[account objectForKey:kRst_AccountURL] isEqualToString:@""]){
+//
+//        NSArray *parts=[[account objectForKey:kRst_AccountURL]componentsSeparatedByString:@"."];
+//        NSString *jurisdictionId = [[[parts objectAtIndex:0]componentsSeparatedByString:@"//"]objectAtIndex:1];
+//        NSDictionary* server= [[NSDictionary alloc]initWithObjectsAndKeys:
+//                           [NSNumber numberWithBool:TRUE],kOpen311_SupportsMedia,
+//                           @"json",kOpen311_Format,
+//                           @"http://respond-open311api.respondcrm.com/Open311API.svc/",kOpen311_Url,
+//                         @"00000000-0000-0000-0000-000000000000",kOpen311_ApiKey,
+//                           [account objectForKey:kRst_AccountName],kOpen311_Name,
+//                           jurisdictionId,kOpen311_Jurisdiction,nil];
+//        [[Preferences sharedInstance] setCurrentServer:server];
+//        currentServer=server;
+//        [self refreshEndpointParams];
+//        httpClient = [[AFHTTPSessionManager alloc ] initWithBaseURL:[NSURL URLWithString:[server objectForKey:kOpen311_Url]]];
+//    }
+//    
+//    else{
+//        NSDictionary* server= [[NSDictionary alloc]initWithObjectsAndKeys:
+//                               [NSNumber numberWithBool:TRUE],kOpen311_SupportsMedia,
+//                               @"json",kOpen311_Format,
+//                               @"http://respond-open311api.respondcrm.com/Open311API.svc/",kOpen311_Url,
+//                               @"00000000-0000-0000-0000-000000000000",kOpen311_ApiKey,
+//                               [account objectForKey:kRst_AccountName],kOpen311_Name,
+//                               @"municipiospr",kOpen311_Jurisdiction,nil];
+//        [[Preferences sharedInstance] setCurrentServer:server];
+//        currentServer=server;
+//        [self refreshEndpointParams];
+//        httpClient = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:[server objectForKey:kOpen311_Url]]];
+//    }
+//    
     
     [self loadServiceListForAccount];
     
@@ -357,14 +369,20 @@ SHARED_SINGLETON(Open311);
 
     if (operation) {
         NSError *e;
-        NSArray *serviceRequests = [NSJSONSerialization JSONObjectWithData:[operation responseData] options:nil error:&e];
-        NSInteger statusCode = [[operation response] statusCode];
-        if (!e) {
-            NSDictionary *sr = serviceRequests[0];
-            if (sr[kOpen311_Description]) {
-                message = sr[kOpen311_Description];
+
+        if([operation responseData]!=nil){
+            NSArray *serviceRequests = [NSJSONSerialization JSONObjectWithData:[operation responseData] options:nil error:&e];
+            
+            
+            if (!e) {
+                NSDictionary *sr = serviceRequests[0];
+                if (sr[kOpen311_Description]) {
+                    message = sr[kOpen311_Description];
+                }
             }
+
         }
+        NSInteger statusCode = [[operation response] statusCode];
         
         if (statusCode == 403) {
             title = NSLocalizedString(kUI_Error403, nil);
@@ -387,6 +405,7 @@ SHARED_SINGLETON(Open311);
 - (NSMutableURLRequest *)preparePostForReport:(Report *)report withMedia:(UIImage *)media
 {
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:_endpointParameters];
+    
     [report.postData enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         if (!parameters[key]) {
             parameters[key] = obj;
@@ -394,17 +413,19 @@ SHARED_SINGLETON(Open311);
     }];
     
     NSMutableURLRequest *post;
+        
+    
     if (media) {
         [parameters removeObjectForKey:kOpen311_Media];
         
-        post = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:@"request.json" parameters:parameters  constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        post = [[AFJSONRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:@"http://10.252.70.35:300/Open311API.svc/requests.json" parameters:parameters  constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                                     [formData appendPartWithFileData:UIImagePNGRepresentation(media)
                                     name:kOpen311_Media fileName:@"media.png" mimeType:@"image/png"];
                                     }
         ];
     }
     else {
-        post = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:@"request.json" parameters:parameters constructingBodyWithBlock:nil error:nil];
+        post = [[AFJSONRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:@"http://10.252.70.35:300/Open311API.svc/requests.json" parameters:parameters constructingBodyWithBlock:nil error:nil];
     }
     return post;
 }
@@ -453,7 +474,7 @@ SHARED_SINGLETON(Open311);
 - (void)postReport:(Report *)report withPost:(NSMutableURLRequest *)post
 {
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc]initWithRequest:post];
-    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    operation.responseSerializer = [AFHTTPResponseSerializer serializer];
     
     
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -490,42 +511,6 @@ SHARED_SINGLETON(Open311);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self postFailedWithError:error forOperation:operation];
     }];
-    
-    
-//        success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//            NSNotificationCenter *notifications = [NSNotificationCenter defaultCenter];
-//            
-//            NSError *error;
-//            NSArray *serviceRequests = [NSJSONSerialization JSONObjectWithData:responseObject options:nil error:&error];
-//            if (!error) {
-//                NSMutableDictionary *sr = [NSMutableDictionary dictionaryWithDictionary:serviceRequests[0]];
-//                if (sr[kOpen311_ServiceRequestId] || sr[kOpen311_Token]) {
-//                    /*if (!sr[kOpen311_RequestedDatetime]) {
-//                        NSDateFormatter *df = [[NSDateFormatter alloc] init];
-//                        [df setDateFormat:kDate_ISO8601];
-//                        sr[kOpen311_RequestedDatetime] = [df stringFromDate:[NSDate date]];
-//                    }*/
-//                    report.requestedDate  = [NSDate date];
-//                    report.server         = currentServer;
-//                    report.serviceRequest = sr;
-//                    
-//                    [[Preferences sharedInstance] saveReport:report forIndex:-1];
-//                    [notifications postNotificationName:kNotification_PostSucceeded object:self];
-//                }
-//                else {
-//                    // We got a 200 response back in the correct format
-//                    // However, it did not include a token or a service_request_id
-//                    [notifications postNotificationName:kNotification_PostFailed object:self];
-//                }
-//            }
-//            else {
-//                // We got a 200 response, but it was not valid JSON
-//                [notifications postNotificationName:kNotification_PostFailed object:self];
-//            }
-//        }
-//        failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//            [self postFailedWithError:error forOperation:operation];
-//        }];
     [operation start];
 }
 

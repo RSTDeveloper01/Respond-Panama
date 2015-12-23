@@ -30,7 +30,7 @@
     self.labelLastName .text = NSLocalizedString(kUI_LastName,  nil);
     self.labelEmail    .text = NSLocalizedString(kUI_Email,     nil);
     self.labelPhone    .text = NSLocalizedString(kUI_Phone,     nil);
-    self.labelCity    .text  = NSLocalizedString(kUI_City,     nil);
+//    self.labelCity    .text  = NSLocalizedString(kUI_City,     nil);
     self.labelCedula  .text  = NSLocalizedString(kUI_Cedula,     nil);
     
     NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
@@ -39,13 +39,11 @@
     self.textFieldLastName .text = [preferences stringForKey:kOpen311_LastName];
     self.textFieldEmail    .text = [preferences stringForKey:kOpen311_Email];
     self.textFieldPhone    .text = [preferences stringForKey:kOpen311_Phone];
-    self.textFieldCity     .text = [preferences stringForKey:kOpen311_City];
+//    self.textFieldCity     .text = [preferences stringForKey:kOpen311_City];
 
-    cities = [[NSArray alloc]init];
-    cities = [[Open311 sharedInstance]accounts];
-    //[self.cityPickerView removeFromSuperview];
-//    [self.view addSubview:self.cityPickerView];
-    [_textFieldCity setInputView:self.cityPickerView ];
+//    cities = [[NSArray alloc]init];
+//    cities = [[Open311 sharedInstance]accounts];
+//    [_textFieldCity setInputView:self.cityPickerView ];
     self.textFieldCedula   .text = [preferences stringForKey:kOpen311_Cedula];
 
 }
@@ -63,7 +61,7 @@
     [preferences setValue:self.textFieldCedula   .text forKey:kOpen311_Cedula];
     [preferences setValue:self.textFieldEmail    .text forKey:kOpen311_Email];
     [preferences setValue:self.textFieldPhone    .text forKey:kOpen311_Phone];
-    [preferences setValue:self.textFieldCity     .text forKey:kOpen311_City];
+//    [preferences setValue:self.textFieldCity     .text forKey:kOpen311_City];
 
     //[self.navigationController popViewControllerAnimated:YES];
     [self.delegate personalInfoUpdated:YES];
@@ -86,37 +84,37 @@
 }
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row   forComponent:(NSInteger)component
 {
-    NSString *city = [[cities objectAtIndex:row]objectForKey:@"account_name"];
-    
-    if([_textFieldCity.text isEqualToString:city])
-    {
-        [pickerView selectRow:row inComponent:0 animated:YES];
-         //   [pickerView reloadComponent:0];
-        
-    }
-    return [[cities objectAtIndex:row]objectForKey:@"account_name"];
+//    NSString *city = [[cities objectAtIndex:row]objectForKey:@"account_name"];
+//    
+//    if([_textFieldCity.text isEqualToString:city])
+//    {
+//        [pickerView selectRow:row inComponent:0 animated:YES];
+//         //   [pickerView reloadComponent:0];
+//        
+//    }
+//    return [[cities objectAtIndex:row]objectForKey:@"account_name"];
     
 }
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     
-    _textFieldCity.text = [[cities objectAtIndex:row]objectForKey:@"account_name"];
+//    _textFieldCity.text = [[cities objectAtIndex:row]objectForKey:@"account_name"];
 }
 
 
 
 -(void) selectDefault{
     
-    if(![_textFieldCity.text isEqualToString:@""]){
-        int i = 0;
-        for(NSDictionary *city in cities)
-        {
-            if([[city objectForKey:@"account_name"] isEqualToString:_textFieldCity.text]){
-                [_cityPickerView selectRow:i inComponent:0 animated:NO];
-                break;
-            }
-            i++;
-        }
-    }
+//    if(![_textFieldCity.text isEqualToString:@""]){
+//        int i = 0;
+//        for(NSDictionary *city in cities)
+//        {
+//            if([[city objectForKey:@"account_name"] isEqualToString:_textFieldCity.text]){
+//                [_cityPickerView selectRow:i inComponent:0 animated:NO];
+//                break;
+//            }
+//            i++;
+//        }
+//    }
     
 }
 
@@ -142,7 +140,7 @@
     else if (indexPath.row == 4) {
      //   [self.cityPickerView setHidden:NO];
      //   [self selectDefault];
-        [self.textFieldCity  resignFirstResponder];
+     //   [self.textFieldCity  resignFirstResponder];
         [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
     }
     else if (indexPath.row == 5) {

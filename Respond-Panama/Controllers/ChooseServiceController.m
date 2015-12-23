@@ -80,6 +80,7 @@ static NSString * const kSegueToReport  = @"SegueToReport";
     if([[open311 groups]count]==0)
     {
         [self.navigationController popToRootViewControllerAnimated:YES];
+        return;
     }
     [busyIcon stopAnimating];
     [busyIcon removeFromSuperview];

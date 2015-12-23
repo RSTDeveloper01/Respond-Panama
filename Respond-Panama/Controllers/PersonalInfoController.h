@@ -25,7 +25,7 @@
 @property (nonatomic, weak) IBOutlet UITextField *textFieldLastName;
 @property (nonatomic, weak) IBOutlet UITextField *textFieldEmail;
 @property (nonatomic, weak) IBOutlet UITextField *textFieldPhone;
-@property (nonatomic, weak) IBOutlet UITextField *textFieldCity;
+//@property (nonatomic, weak) IBOutlet UITextField *textFieldCity;
 @property (nonatomic, weak) IBOutlet UITextField *textFieldCedula;
 @property (nonatomic, weak) IBOutlet UIPickerView *cityPickerView;
 

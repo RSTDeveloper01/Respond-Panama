@@ -87,10 +87,10 @@ static NSString * const kSegueToServices = @"SegueToChooseServiceFromAccount";
             NSDictionary* server= [[NSDictionary alloc]initWithObjectsAndKeys:
                                [NSNumber numberWithBool:TRUE],kOpen311_SupportsMedia,
                                @"json",kOpen311_Format,
-                               @"http://respond-open311api.respondcrm.com/Open311API.svc/",kOpen311_Url,
+                               @"http://10.252.70.35:300/Open311API.svc/",kOpen311_Url,
                                @"00000000-0000-0000-0000-000000000000",kOpen311_ApiKey,
-                               @"Municipios PR",kOpen311_Name,
-                               @"municipiospr",kOpen311_Jurisdiction,nil];
+                               @"Panama",kOpen311_Name,
+                               @"RespondPanamaDev",kOpen311_Jurisdiction,nil];
             currentServer = server;
             [preferences setCurrentServer:server];
             //self.navigationItem.title = currentServer[kOpen311_Name];
@@ -299,7 +299,12 @@ static NSString * const kSegueToServices = @"SegueToChooseServiceFromAccount";
     
     
     if([tabBarController.tabBar.items objectAtIndex:kTab_Report] == viewController.tabBarItem){
-        selectedAccount = [open311.accounts objectAtIndex: 20];
+        selectedAccount = [NSDictionary dictionaryWithObjectsAndKeys:
+                           @"Panama",@"account_name",
+                           @"",@"url"
+                           , nil];
+        
+        //[open311.accounts objectAtIndex: 20];
         [[self.tabBarController.tabBar.items objectAtIndex:kTab_Report]setEnabled:NO];
         [self performSegueWithIdentifier:kSegueToServices sender:self];
         [self.tabBarController setSelectedIndex:kTab_Home];

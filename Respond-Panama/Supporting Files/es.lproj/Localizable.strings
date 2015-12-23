@@ -29,6 +29,7 @@
 "enable_location_services"="Favor de ir a Ajustes -> Privacidad -> Localización para activar los servicios de localización para Respond.";
 "name"="Nombre";
 "url"="Url";
+"share"="Compartir";
 "jurisdiction_id"="Organización";
 "api_key"="Clave de API";
 "format"="Formato";
@@ -58,3 +59,4 @@
 "failure_loading_services"="No se pudo cargar información de servicios";
 "failure_posting_service"="Falló el proceso de someter su solicitud";
 "error_403"="Esta aplicación no tiene permisos";
+"info_topic_header"="Tópico Informativo";
