@@ -87,7 +87,7 @@ static NSString * const kSegueToServices = @"SegueToChooseServiceFromAccount";
             NSDictionary* server= [[NSDictionary alloc]initWithObjectsAndKeys:
                                [NSNumber numberWithBool:TRUE],kOpen311_SupportsMedia,
                                @"json",kOpen311_Format,
-                               @"http://10.252.70.35:300/Open311API.svc/",kOpen311_Url,
+                               @"http://10.252.70.27:500/Open311API.svc/",kOpen311_Url,
                                @"00000000-0000-0000-0000-000000000000",kOpen311_ApiKey,
                                @"Panama",kOpen311_Name,
                                @"RespondPanamaDev",kOpen311_Jurisdiction,nil];
@@ -104,6 +104,7 @@ static NSString * const kSegueToServices = @"SegueToChooseServiceFromAccount";
                                                object:open311];
         
         [open311 loadAllMetadataForServer:currentServer];
+        [open311 loadProvinces];
     }
     [self refreshPersonalInfo];
 }

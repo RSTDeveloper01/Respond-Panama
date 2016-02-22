@@ -21,13 +21,14 @@
 @property (nonatomic, weak) IBOutlet UILabel *labelPhone;
 @property (nonatomic, weak) IBOutlet UILabel *labelCity;
 @property (nonatomic, weak) IBOutlet UILabel *labelCedula;
+@property (nonatomic, weak) IBOutlet UILabel *labelProvince;
 @property (nonatomic, weak) IBOutlet UITextField *textFieldFirstName;
 @property (nonatomic, weak) IBOutlet UITextField *textFieldLastName;
 @property (nonatomic, weak) IBOutlet UITextField *textFieldEmail;
 @property (nonatomic, weak) IBOutlet UITextField *textFieldPhone;
-//@property (nonatomic, weak) IBOutlet UITextField *textFieldCity;
+@property (nonatomic, weak) IBOutlet UITextField *textFieldProvince;
 @property (nonatomic, weak) IBOutlet UITextField *textFieldCedula;
-@property (nonatomic, weak) IBOutlet UIPickerView *cityPickerView;
+@property (nonatomic, weak) IBOutlet UIPickerView *provincePickerView;
 
 @property id<PersonalInfoDelegate>delegate;
 

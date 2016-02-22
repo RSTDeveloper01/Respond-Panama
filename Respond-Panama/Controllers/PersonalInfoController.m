@@ -14,7 +14,7 @@
 #import "Open311.h"
 
 @interface PersonalInfoController (){
-    NSArray *cities;
+    NSArray *provinces;
 }
 
 @end
@@ -30,8 +30,8 @@
     self.labelLastName .text = NSLocalizedString(kUI_LastName,  nil);
     self.labelEmail    .text = NSLocalizedString(kUI_Email,     nil);
     self.labelPhone    .text = NSLocalizedString(kUI_Phone,     nil);
-//    self.labelCity    .text  = NSLocalizedString(kUI_City,     nil);
-    self.labelCedula  .text  = NSLocalizedString(kUI_Cedula,     nil);
+    self.labelProvince .text  = NSLocalizedString(kUI_Province,     nil);
+    self.labelCedula   .text  = NSLocalizedString(kUI_Cedula, nil);
     
     NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
     
@@ -39,11 +39,11 @@
     self.textFieldLastName .text = [preferences stringForKey:kOpen311_LastName];
     self.textFieldEmail    .text = [preferences stringForKey:kOpen311_Email];
     self.textFieldPhone    .text = [preferences stringForKey:kOpen311_Phone];
-//    self.textFieldCity     .text = [preferences stringForKey:kOpen311_City];
+    self.textFieldProvince     .text = [preferences stringForKey:kOpen311_Province];
 
-//    cities = [[NSArray alloc]init];
-//    cities = [[Open311 sharedInstance]accounts];
-//    [_textFieldCity setInputView:self.cityPickerView ];
+    provinces = [[NSArray alloc]init];
+    provinces = [[Open311 sharedInstance] provinces];
+    [_textFieldProvince setInputView:self.provincePickerView];
     self.textFieldCedula   .text = [preferences stringForKey:kOpen311_Cedula];
 
 }
@@ -84,7 +84,7 @@
 }
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row   forComponent:(NSInteger)component
 {
-//    NSString *city = [[cities objectAtIndex:row]objectForKey:@"account_name"];
+//    NSString *province = [[cities objectAtIndex:row]objectForKey:@"account_name"];
 //    
 //    if([_textFieldCity.text isEqualToString:city])
 //    {

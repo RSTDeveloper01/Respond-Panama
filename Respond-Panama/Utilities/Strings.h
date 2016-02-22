@@ -39,6 +39,7 @@ extern NSString * const kUI_LastName;
 extern NSString * const kUI_Email;
 extern NSString * const kUI_Phone;
 extern NSString * const kUI_City;
+extern NSString * const kUI_Province;
 extern NSString * const kUI_Cedula;
 extern NSString * const kUI_Cities;
 extern NSString * const kUI_Name;
@@ -128,6 +129,7 @@ extern NSString * const kOpen311_Email;
 extern NSString * const kOpen311_Phone;
 extern NSString * const kOpen311_DeviceId;
 extern NSString * const kOpen311_City;
+extern NSString * const kOpen311_Province;
 extern NSString * const kOpen311_Cedula;
 // Custom field definition in service_definition
 extern NSString * const kOpen311_Metadata;

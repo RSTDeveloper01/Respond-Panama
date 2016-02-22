@@ -33,16 +33,17 @@ extern NSString * const kNotification_PostFailed;
 @property (nonatomic,strong) NSMutableDictionary *currentAccount;
 
 + (id)sharedInstance;
-
+- (void)getProvinces;
 - (void)loadAllMetadataForServer:(NSDictionary *)server;
 - (void)loadFailedWithError:(NSError *)error;
 
+- (void)loadProvinces;
 - (void)loadServiceList;
 - (void)loadServiceListForAccount;
 - (void)loadServiceDefinitions;
 - (void)loadServiceDefinitions2:(NSDictionary *)service;
 - (void)loadAccountList;
-- (void) clearGpsCity;
+- (void)clearGpsCity;
 - (void)loadAccountDefinitions;
 - (NSArray *)getServicesForGroup:(NSString *)group;
 - (void) getServicesForAccount:(NSDictionary *)account;

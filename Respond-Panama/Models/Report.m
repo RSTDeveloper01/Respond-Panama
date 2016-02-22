@@ -146,7 +146,7 @@ NSString * const kPostData          = @"postData";
             success:^(NSURLSessionDataTask *operation, id responseObject) {
                 NSError *error;
                 NSArray *serviceRequests = [NSJSONSerialization JSONObjectWithData:responseObject options:nil error:&error];
-                if (!error) {
+                if (!error && serviceRequests.count > 0) {
                     [delegate didReceiveServiceRequest:serviceRequests[0]];
                 }
                 else {

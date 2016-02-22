@@ -42,12 +42,12 @@ NSString * const kNotification_PostFailed       = @"postFailed";
     NSDictionary *currentServer;
     NSArray *serviceList;
     NSArray *accountList;
-    //NSDictionary *accountList;
+    NSArray *provincesList;
     CLLocation *newLocation;
     CLLocation *oldLocation;
     bool *locationFirstTime;
-    
 }
+
 SHARED_SINGLETON(Open311);
 
 // Make sure to call this method before doing any other work
@@ -158,6 +158,27 @@ SHARED_SINGLETON(Open311);
                 }];
 }
 
+#pragma mark = GET Provinces List
+-(void) loadProvinces
+{
+    httpClient.responseSerializer = [AFHTTPResponseSerializer serializer];
+    httpClient.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
+    [httpClient GET:@"provinces.json"
+         parameters:_endpointParameters
+         success:^(NSURLSessionDataTask *operation, id responseObject) {
+                 NSError *error;
+                 provincesList = [NSJSONSerialization JSONObjectWithData:responseObject options:nil error:&error];
+                 if (!error) {
+                     return;
+                 }
+                 else{
+                    NSLog(@"Error loading provinces");
+                 }
+             }
+        failure:^(NSURLSessionDataTask *operation, NSError *error) {
+            NSLog(@"Error loading provinces");
+        }];
+}
 
 
 #pragma mark - GET Account List
@@ -264,6 +285,21 @@ SHARED_SINGLETON(Open311);
 
 */
 
+- (void)getProvinces
+{
+    NSDictionary* server = [[NSDictionary alloc]initWithObjectsAndKeys:
+                            [NSNumber numberWithBool:TRUE],kOpen311_SupportsMedia,
+                            @"json",kOpen311_Format,
+                            @"http://10.252.70.27:500/Open311API.svc/",kOpen311_Url,
+                            @"00000000-0000-0000-0000-000000000000",kOpen311_ApiKey,
+                            @"Panama",kOpen311_Name,
+                            @"RespondPanamaDev",kOpen311_Jurisdiction,nil];
+    [[Preferences sharedInstance] setCurrentServer:server];
+    currentServer=server;
+    [self refreshEndpointParams];
+    httpClient = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:[server objectForKey:kOpen311_Url]]];
+}
+
 - (void)loadAccountDefinitions
 {
     int count = [accountList count];
@@ -305,7 +341,7 @@ SHARED_SINGLETON(Open311);
     NSDictionary* server = [[NSDictionary alloc]initWithObjectsAndKeys:
                             [NSNumber numberWithBool:TRUE],kOpen311_SupportsMedia,
                             @"json",kOpen311_Format,
-                            @"http://10.252.70.35:300/Open311API.svc/",kOpen311_Url,
+                            @"http://10.252.70.27:500/Open311API.svc/",kOpen311_Url,
                             @"00000000-0000-0000-0000-000000000000",kOpen311_ApiKey,
                             @"Panama",kOpen311_Name,
                             @"RespondPanamaDev",kOpen311_Jurisdiction,nil];
@@ -418,14 +454,14 @@ SHARED_SINGLETON(Open311);
     if (media) {
         [parameters removeObjectForKey:kOpen311_Media];
         
-        post = [[AFJSONRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:@"http://10.252.70.35:300/Open311API.svc/requests.json" parameters:parameters  constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        post = [[AFJSONRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:@"http://10.252.70.27:500/Open311API.svc/requests.json" parameters:parameters  constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                                     [formData appendPartWithFileData:UIImagePNGRepresentation(media)
                                     name:kOpen311_Media fileName:@"media.png" mimeType:@"image/png"];
                                     }
         ];
     }
     else {
-        post = [[AFJSONRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:@"http://10.252.70.35:300/Open311API.svc/requests.json" parameters:parameters constructingBodyWithBlock:nil error:nil];
+        post = [[AFJSONRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:@"http://10.252.70.27:500/Open311API.svc/requests.json" parameters:parameters constructingBodyWithBlock:nil error:nil];
     }
     return post;
 }

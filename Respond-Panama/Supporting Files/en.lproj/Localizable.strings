@@ -1,5 +1,5 @@
 "title_home"="Home";
-"app_title"="RESPOND";
+"app_title"="RESPOND 3-1-1";
 "help_title"="Help";
 "help_text" ="This app is used to report issues to the municipalities of Puerto Rico.  To get started, go to 'My Info' to record your personal information.  Click “New Report” to report an issue.  Please take a picture of the issue and allow us to use your GIS to locate the problem.  Use the “My Reports” feature to check the status of your reported issues.  Thank you for improving Puerto Rico!";
 "menu_settings"="My Info";
@@ -19,9 +19,12 @@
 "email"="Email";
 "phone"="Phone";
 "city"="City";
+"province"="Province";
+"provinces"="Provinces";
 "cedula"="Cedula";
 "cities"="Cities";
 "select_city_title"="Select the city you want to submit your report";
+"select_province_title"="Select the province you want to submit your report";
 "gps_city"="Current City";
 "user_city"="Your City";
 "enable_location_services_title"="Enable Location Services";

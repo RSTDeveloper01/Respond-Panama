@@ -631,20 +631,20 @@ static NSString * const kSegueToSettings        = @"SegueToSettings";
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder reverseGeocodeLocation:[[CLLocation alloc] initWithLatitude:location.latitude longitude:location.longitude]
                    completionHandler:^(NSArray *placemarks, NSError *error) {
-                       if([[placemarks[0] administrativeArea] isEqualToString:@"Puerto Rico"] || [[placemarks[0] administrativeArea] isEqualToString:@"PR"])
-                       {
-                           NSString *address = [NSString stringWithFormat:@"%@ %@ %@ %@", [placemarks[0] name],[placemarks[0] locality],[placemarks[0] administrativeArea],[placemarks[0] postalCode]];
+//                       if([[placemarks[0] administrativeArea] isEqualToString:@"Puerto Rico"] || [[placemarks[0] administrativeArea] isEqualToString:@"PR"])
+//                       {
+                           NSString *address = [NSString stringWithFormat:@"%@, Panamá", [placemarks[0] name]];
                            _report.postData[kOpen311_AddressString] = address ? address : @"";
                            [self.tableView reloadData];
-                       }
-                       else{
-                           _report.postData[kOpen311_Latitude]  = @"";
-                           _report.postData[kOpen311_Longitude] = @"";
-                           UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:NSLocalizedString(kUI_OutOfPRTitle, nil) message:NSLocalizedString(kUI_OutOfPRMessage, nil)delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
-                           [alertView show];
-                           _report.postData[kOpen311_AddressString] = @"";
-                           [self.tableView reloadData];
-                       }
+//                       }
+////                       else{
+//                           _report.postData[kOpen311_Latitude]  = @"";
+//                           _report.postData[kOpen311_Longitude] = @"";
+//                           UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:NSLocalizedString(kUI_OutOfPRTitle, nil) message:NSLocalizedString(kUI_OutOfPRMessage, nil)delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+//                           [alertView show];
+//                           _report.postData[kOpen311_AddressString] = @"";
+//                           [self.tableView reloadData];
+////                       }
                    }];
     
     [self popViewAndReloadTable];
