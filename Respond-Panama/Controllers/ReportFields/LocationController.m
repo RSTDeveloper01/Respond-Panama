@@ -102,7 +102,7 @@ static CLLocationDegrees const kLongitudeDelta = 0.0025;
 - (void)goToSelectedCity{
     geocoder = [[CLGeocoder alloc] init];
     Open311 *open311= [Open311 sharedInstance];
-    [geocoder geocodeAddressString:[NSString stringWithFormat:@"%@, Puerto Rico",open311.selectedCity] completionHandler:^(NSArray *placemarks, NSError *error) {
+    [geocoder geocodeAddressString:[NSString stringWithString:@"Ciudad de Panama, Panama"] completionHandler:^(NSArray *placemarks, NSError *error) {
     CLPlacemark *placemark = [placemarks objectAtIndex:0];
     MKCoordinateRegion region;
     region.center.latitude = placemark.region.center.latitude;

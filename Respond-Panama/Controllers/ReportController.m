@@ -212,6 +212,28 @@ static NSString * const kSegueToSettings        = @"SegueToSettings";
  */
 - (IBAction)done:(id)sender
 {
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    NSString *firstname = [prefs stringForKey:kOpen311_FirstName];
+    NSString *lastname  = [prefs stringForKey:kOpen311_LastName];
+    NSString *email     = [prefs stringForKey:kOpen311_Email];
+    NSString *phone     = [prefs stringForKey:kOpen311_Phone];
+    NSString *cedula     = [prefs stringForKey:kOpen311_Cedula];
+    NSString *province     = [prefs stringForKey:kOpen311_Province];
+    
+    if(firstname == nil || [firstname isEqualToString:@""]
+       || lastname == nil || [lastname isEqualToString:@""]
+       || email == nil || [email isEqualToString:@""]
+       || phone == nil || [phone isEqualToString:@""]
+       || cedula == nil || [cedula isEqualToString:@""]
+       || province == nil || [province isEqualToString:@""]){
+
+        UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Favor de completar información de su perfil." delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK",nil];
+        [alertView show];
+        return;
+    }
+       
+    
+    
     if(_report.postData[kOpen311_Media]==nil &&
        (_report.postData[kOpen311_AddressString] == nil || [_report.postData[kOpen311_AddressString] isEqualToString:@""])&&
        (_report.postData[kOpen311_Description] ==nil || [_report.postData[kOpen311_Description] isEqualToString:@""])){
@@ -227,17 +249,10 @@ static NSString * const kSegueToSettings        = @"SegueToSettings";
     [busyIcon startAnimating];
     [self.tabBarController.view addSubview:busyIcon];
     
-    //Open311 *open311 = [Open311 sharedInstance];
     
     NSNotificationCenter *notifications = [NSNotificationCenter defaultCenter];
     [notifications addObserver:self selector:@selector(postSucceeded) name:kNotification_PostSucceeded object:open311];
     [notifications addObserver:self selector:@selector(postFailed)    name:kNotification_PostFailed    object:open311];
-    
-    if([[open311.currentAccount objectForKey:@"url"] isEqualToString:@""])
-    {
-        _report.postData[@"accountname"]= [open311.currentAccount objectForKey:@"account_name"];
-        _report.postData[@"accountid"]= [open311.currentAccount objectForKey:@"account_id"];
-    }
     
     [open311 startPostingServiceRequest:_report];
 }
@@ -368,6 +383,7 @@ static NSString * const kSegueToSettings        = @"SegueToSettings";
 {
     //    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kReportCell forIndexPath:indexPath];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kReportCell];
+
     cell.detailTextLabel.text = @"";
     
     NSDictionary *field = fields[indexPath.section][indexPath.row];
@@ -425,8 +441,8 @@ static NSString * const kSegueToSettings        = @"SegueToSettings";
         if ([text length] == 0) {
             text = NSLocalizedString(kUI_Anonymous,  nil);
         }
-        cell.detailTextLabel.text = text;
         [cell.imageView  setImage:[UIImage imageNamed:@"accountTableCell"]];
+        cell.detailTextLabel.text =[text stringByAppendingString:@""];
     }
     else{
         NSString *datatype  = field[kType];
@@ -630,28 +646,38 @@ static NSString * const kSegueToSettings        = @"SegueToSettings";
     
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder reverseGeocodeLocation:[[CLLocation alloc] initWithLatitude:location.latitude longitude:location.longitude]
-                   completionHandler:^(NSArray *placemarks, NSError *error) {
-//                       if([[placemarks[0] administrativeArea] isEqualToString:@"Puerto Rico"] || [[placemarks[0] administrativeArea] isEqualToString:@"PR"])
-//                       {
-                           NSString *address = [NSString stringWithFormat:@"%@, Panamá", [placemarks[0] name]];
-                           _report.postData[kOpen311_AddressString] = address ? address : @"";
-                           [self.tableView reloadData];
-//                       }
-////                       else{
-//                           _report.postData[kOpen311_Latitude]  = @"";
-//                           _report.postData[kOpen311_Longitude] = @"";
-//                           UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:NSLocalizedString(kUI_OutOfPRTitle, nil) message:NSLocalizedString(kUI_OutOfPRMessage, nil)delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
-//                           [alertView show];
-//                           _report.postData[kOpen311_AddressString] = @"";
-//                           [self.tableView reloadData];
-////                       }
-                   }];
+        completionHandler:^(NSArray *placemarks, NSError *error) {
+            
+            
+            NSString *address = @"";
+            
+            if([placemarks[0] name]){
+                address = [address stringByAppendingString:[placemarks[0] name]];
+
+            }
+            
+            if([placemarks[0] locality]){
+                address = [address stringByAppendingString:[NSString stringWithFormat:@" %@",[placemarks[0] locality]]];
+            }
+            
+            if([placemarks[0] administrativeArea]){
+                address = [address stringByAppendingString:[NSString stringWithFormat:@" %@",[placemarks[0] administrativeArea]]];
+            }
+            
+            if([placemarks[0] postalCode]){
+                address = [address stringByAppendingString:[NSString stringWithFormat:@" %@",[placemarks[0] postalCode]]];
+            }
+            
+            if([placemarks[0] country] && ([placemarks[0] country] != 'Estados Unidos' || [placemarks[0] country] != 'United States')){
+                address = [address stringByAppendingString:[NSString stringWithFormat:@", %@",[placemarks[0] country]]];
+            }
+            
+            _report.postData[kOpen311_AddressString] = address ? address : @"";
+            [self.tableView reloadData];
+    }];
     
     [self popViewAndReloadTable];
 }
-
-
-
 
 #pragma mark - Image choosing handlers
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex

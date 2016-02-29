@@ -51,19 +51,6 @@ static NSString * const kSegueToServices = @"SegueToChooseServiceFromAccount";
    
     
     self.tabBarController.delegate = self;
-  /*  if([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorized){
-        locationManager = [[CLLocationManager alloc] init];
-        locationManager.delegate = self;
-        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
-        [locationManager startUpdatingLocation];
-        geocoder = [[CLGeocoder alloc] init];
-    }
-    else{
-        [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"prefs://"]];
-    }
-   
-   */
-    //[[self.tabBarController.tabBar.items objectAtIndex:kTab_Servers] setTitle:NSLocalizedString(kUI_Servers, nil)];
 }
 
 
@@ -93,14 +80,14 @@ static NSString * const kSegueToServices = @"SegueToChooseServiceFromAccount";
                                @"RespondPanamaDev",kOpen311_Jurisdiction,nil];
             currentServer = server;
             [preferences setCurrentServer:server];
-            //self.navigationItem.title = currentServer[kOpen311_Name];
+            self.navigationItem.title = @"Panama";
         }
     
 
         [self startBusyIcon];
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(accountListReady)
-                                                 name:kNotification_AccountListReady
+                                             selector:@selector(provincesListReady)
+                                                 name:kNotification_ProvincesListReady
                                                object:open311];
         
         [open311 loadAllMetadataForServer:currentServer];
@@ -132,6 +119,12 @@ static NSString * const kSegueToServices = @"SegueToChooseServiceFromAccount";
     [busyIcon removeFromSuperview];
 }
 
+-(void)provincesListReady
+{
+    [busyIcon stopAnimating];
+    [busyIcon removeFromSuperview];
+}
+
 
 - (void)refreshPersonalInfo
 {
@@ -141,7 +134,8 @@ static NSString * const kSegueToServices = @"SegueToChooseServiceFromAccount";
     NSString *lastname  = [defaults stringForKey:kOpen311_LastName];
     NSString *email     = [defaults stringForKey:kOpen311_Email];
     NSString *phone     = [defaults stringForKey:kOpen311_Phone];
-    NSString *city      = [defaults stringForKey:kOpen311_City];
+    NSString *city      = [defaults stringForKey:kOpen311_Province];
+//    NSString *city      = [defaults stringForKey:kOpen311_City];
     NSString *cedula    = [defaults stringForKey:kOpen311_Cedula];
     if ([firstname length] > 0 || [lastname length] > 0) {
         text = [text stringByAppendingFormat:@"%@ %@", firstname, lastname];
@@ -161,8 +155,6 @@ static NSString * const kSegueToServices = @"SegueToChooseServiceFromAccount";
     if ([city length] > 0) {
         text = [text stringByAppendingFormat:@"\r%@", city];
     }
-    
-    
     
     if ([text length] == 0) {
         text = NSLocalizedString(kUI_Anonymous,  nil);
@@ -200,10 +192,16 @@ static NSString * const kSegueToServices = @"SegueToChooseServiceFromAccount";
     
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            [self showActionSheet];
-            //[self.tabBarController setSelectedIndex:kTab_Report];
+            selectedAccount = [NSDictionary dictionaryWithObjectsAndKeys:
+                               @"Panama",@"account_name",
+                               @"",@"url"
+                               , nil];
+            
+            [[self.tabBarController.tabBar.items objectAtIndex:kTab_Report]setEnabled:NO];
+            [self performSegueWithIdentifier:kSegueToServices sender:self];
+            [self.tabBarController setSelectedIndex:kTab_Home];
         }
-        if (indexPath.row == 1) {
+        else if (indexPath.row == 1) {
             [self.tabBarController setSelectedIndex:kTab_Archive];
         }
     }
@@ -305,35 +303,10 @@ static NSString * const kSegueToServices = @"SegueToChooseServiceFromAccount";
                            @"",@"url"
                            , nil];
         
-        //[open311.accounts objectAtIndex: 20];
         [[self.tabBarController.tabBar.items objectAtIndex:kTab_Report]setEnabled:NO];
         [self performSegueWithIdentifier:kSegueToServices sender:self];
         [self.tabBarController setSelectedIndex:kTab_Home];
-        
     }
-//    PANAMA COMMENTED
-    
-//    NSString *gpsCity=@"";
-//    NSString *userCity=@"";
-//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-//    
-//    if([userDefaults objectForKey:kOpen311_City]!=nil)
-//    {
-//        userCity= [userDefaults objectForKey:kOpen311_City];
-//    }
-//    if(open311.gpsCity != nil)
-//    {
-//        gpsCity = open311.gpsCity;
-//    }
-//    
-//    
-//    if([tabBarController.tabBar.items objectAtIndex:kTab_Report] == viewController.tabBarItem &&
-//       (![gpsCity isEqualToString:@""] || ![userCity isEqualToString:@""])
-//       )
-//    {
-//        [self showActionSheet];
-//        [self.tabBarController setSelectedIndex:kTab_Home];
-//    }
 }
 
 

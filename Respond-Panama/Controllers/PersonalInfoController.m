@@ -30,22 +30,21 @@
     self.labelLastName .text = NSLocalizedString(kUI_LastName,  nil);
     self.labelEmail    .text = NSLocalizedString(kUI_Email,     nil);
     self.labelPhone    .text = NSLocalizedString(kUI_Phone,     nil);
-    self.labelProvince .text  = NSLocalizedString(kUI_Province,     nil);
-    self.labelCedula   .text  = NSLocalizedString(kUI_Cedula, nil);
+    self.labelProvince .text = NSLocalizedString(kUI_Province,  nil);
+    self.labelCedula   .text = NSLocalizedString(kUI_Cedula, nil);
     
     NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
     
     self.textFieldFirstName.text = [preferences stringForKey:kOpen311_FirstName];
     self.textFieldLastName .text = [preferences stringForKey:kOpen311_LastName];
+    self.textFieldCedula   .text = [preferences stringForKey:kOpen311_Cedula];
     self.textFieldEmail    .text = [preferences stringForKey:kOpen311_Email];
     self.textFieldPhone    .text = [preferences stringForKey:kOpen311_Phone];
-    self.textFieldProvince     .text = [preferences stringForKey:kOpen311_Province];
+    self.textFieldProvince .text = [preferences stringForKey:kOpen311_Province];
 
     provinces = [[NSArray alloc]init];
     provinces = [[Open311 sharedInstance] provinces];
-    [_textFieldProvince setInputView:self.provincePickerView];
-    self.textFieldCedula   .text = [preferences stringForKey:kOpen311_Cedula];
-
+    [self.textFieldProvince setInputView: self.provincePickerView];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -61,12 +60,11 @@
     [preferences setValue:self.textFieldCedula   .text forKey:kOpen311_Cedula];
     [preferences setValue:self.textFieldEmail    .text forKey:kOpen311_Email];
     [preferences setValue:self.textFieldPhone    .text forKey:kOpen311_Phone];
-//    [preferences setValue:self.textFieldCity     .text forKey:kOpen311_City];
+    [preferences setValue:self.textFieldProvince .text forKey:kOpen311_Province];
 
     //[self.navigationController popViewControllerAnimated:YES];
     [self.delegate personalInfoUpdated:YES];
 }
-
 
 #pragma mark - Picker View handlers
 
@@ -79,45 +77,54 @@
 // returns the # of rows in each component..
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent: (NSInteger)component
 {
-    return cities.count;
+    return provinces.count+1;
     
 }
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row   forComponent:(NSInteger)component
 {
-//    NSString *province = [[cities objectAtIndex:row]objectForKey:@"account_name"];
-//    
-//    if([_textFieldCity.text isEqualToString:city])
-//    {
-//        [pickerView selectRow:row inComponent:0 animated:YES];
-//         //   [pickerView reloadComponent:0];
-//        
-//    }
-//    return [[cities objectAtIndex:row]objectForKey:@"account_name"];
+    
+    if(row == 0){
+        return @"--Provincia--";
+    }
+    else{
+        NSString *province = [[provinces objectAtIndex:row-1]objectForKey:@"province_name"];
+        
+        if([_textFieldProvince.text isEqualToString:province])
+        {
+            [pickerView selectRow:row inComponent:0 animated:YES];
+            
+        }
+        return [[provinces objectAtIndex:row-1]objectForKey:@"province_name"];
+    }
     
 }
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row   inComponent:(NSInteger)component{
     
-//    _textFieldCity.text = [[cities objectAtIndex:row]objectForKey:@"account_name"];
+    if(row != 0){
+        _textFieldProvince.text = [[provinces objectAtIndex:row-1]objectForKey:@"province_name"];
+    }
+    else{
+        _textFieldProvince.text=@"";
+    }
 }
 
 
 
 -(void) selectDefault{
     
-//    if(![_textFieldCity.text isEqualToString:@""]){
-//        int i = 0;
-//        for(NSDictionary *city in cities)
-//        {
-//            if([[city objectForKey:@"account_name"] isEqualToString:_textFieldCity.text]){
-//                [_cityPickerView selectRow:i inComponent:0 animated:NO];
-//                break;
-//            }
-//            i++;
-//        }
-//    }
+    if(![_textFieldProvince.text isEqualToString:@""]){
+        int i = 0;
+        for(NSDictionary *province in provinces)
+        {
+            if([[province objectForKey:@"province_name"] isEqualToString:_textFieldProvince.text]){
+                [_provincePickerView selectRow:i+1 inComponent:0 animated:NO];
+                break;
+            }
+            i++;
+        }
+    }
     
 }
-
 
 #pragma mark - Table view handlers
 
@@ -132,31 +139,27 @@
 {
     if      (indexPath.row == 0) { [self.textFieldFirstName becomeFirstResponder]; }
     else if (indexPath.row == 1) { [self.textFieldLastName  becomeFirstResponder]; }
-    else if (indexPath.row == 2) { [self.textFieldEmail     becomeFirstResponder]; }
-    else if (indexPath.row == 3) {
+    else if (indexPath.row == 2) { [self.textFieldCedula becomeFirstResponder];    }
+    else if (indexPath.row == 3) { [self.textFieldEmail     becomeFirstResponder]; }
+    else if (indexPath.row == 4) {
         [self.textFieldPhone  becomeFirstResponder];
         [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
     }
-    else if (indexPath.row == 4) {
-     //   [self.cityPickerView setHidden:NO];
-     //   [self selectDefault];
-     //   [self.textFieldCity  resignFirstResponder];
-        [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-    }
     else if (indexPath.row == 5) {
-        [self.textFieldCedula becomeFirstResponder];
+        [self.provincePickerView setHidden:NO];
+        [self selectDefault];
+        [self.textFieldProvince  resignFirstResponder];
         [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
     }
 }
 
-
--(BOOL) textFieldShouldBeginEditing:(UITextField*)textField{
-    if([textField.restorationIdentifier isEqualToString:@"cityTextField"]){
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    if([textField.restorationIdentifier isEqualToString:@"provinceTextField"]){
         [self selectDefault];
-        [self.cityPickerView setHidden:NO];
+        [self.provincePickerView setHidden:NO];
         return NO;
-        
     }
+    return YES;
 }
 
 @end

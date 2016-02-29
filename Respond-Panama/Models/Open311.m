@@ -17,13 +17,12 @@
 #import "Open311.h"
 #import "Strings.h"
 #import "Preferences.h"
-//#import "AFHTTPClient.h"
-//#import "AFJSONRequestOperation.h"
-#import "AFHTTPRequestOperationManager.h"
 #import "AFNetworking.h"
+#import "AFHTTPRequestOperationManager.h"
 #import "Media.h"
 #import "CoreLocation/CoreLocation.h"
 
+NSString * const kNotification_ProvincesListReady = @"provincesListReady";
 NSString * const kNotification_ServiceListReady = @"serviceListReady";
 NSString * const kNotification_ServiceDefinitionReady = @"serviceDefinitionReady";
 NSString * const kNotification_RefreshServiceRequestReady = @"refreshServiceRequestReady";
@@ -75,12 +74,11 @@ SHARED_SINGLETON(Open311);
     if (_services             == nil) { _services             = [[NSMutableArray      alloc] init]; } else { [_services             removeAllObjects]; }
     if (_serviceDefinitions == nil) { _serviceDefinitions = [[NSMutableDictionary alloc] init]; } else { [_serviceDefinitions removeAllObjects]; }
     if (_accounts             == nil) { _accounts             = [[NSMutableArray      alloc] init]; } else { [_accounts             removeAllObjects]; }
+    if (_provinces             == nil) { _provinces             = [[NSMutableArray      alloc] init]; } else { [_provinces             removeAllObjects]; }
     
     
     httpClient = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:[server objectForKey:kOpen311_Url]]];
    
-    //[self loadServiceList];
-    
     [self loadAccountList];
 }
 
@@ -158,7 +156,7 @@ SHARED_SINGLETON(Open311);
                 }];
 }
 
-#pragma mark = GET Provinces List
+#pragma mark - GET Provinces List
 -(void) loadProvinces
 {
     httpClient.responseSerializer = [AFHTTPResponseSerializer serializer];
@@ -169,7 +167,7 @@ SHARED_SINGLETON(Open311);
                  NSError *error;
                  provincesList = [NSJSONSerialization JSONObjectWithData:responseObject options:nil error:&error];
                  if (!error) {
-                     return;
+                     [self loadProvincesDefinition];
                  }
                  else{
                     NSLog(@"Error loading provinces");
@@ -180,6 +178,16 @@ SHARED_SINGLETON(Open311);
         }];
 }
 
+-(void) loadProvincesDefinition
+{
+    int count = [provincesList count];
+    if(count > 0)
+    {
+        [_provinces addObjectsFromArray:provincesList];
+    }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotification_ProvincesListReady object:self];
+}
 
 #pragma mark - GET Account List
 - (void)loadAccountList
@@ -591,26 +599,6 @@ SHARED_SINGLETON(Open311);
         
         if (error == nil && [placemarks count] > 0) {
             placemark = [placemarks lastObject];
-            /*
-             subThoroughFare thoroughFare
-             locality
-             administrativeArea postalCode, country
-             */
-            
-            /*  if(placemark.subThoroughfare != NULL)
-             {
-             NSLog(@"SubThoroughFare:%@",placemark.subThoroughfare);
-             szMessage = [szMessage stringByAppendingString:[NSString stringWithFormat:@"%@ ", placemark.subThoroughfare]];
-             }
-             
-             if(placemark.thoroughfare != NULL){
-             NSLog(@"Thoroughfare:%@", placemark.thoroughfare);
-             szMessage = [szMessage stringByAppendingString:[NSString stringWithFormat:@"%@\n", placemark.thoroughfare]];
-             }
-             else{
-             szMessage = [szMessage stringByAppendingString:@"\n"];
-             }
-             */
             
             if(placemark.locality!= NULL)
             {

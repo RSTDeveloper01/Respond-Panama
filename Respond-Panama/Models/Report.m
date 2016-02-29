@@ -5,12 +5,14 @@
 //  Created by Cliff Ingham on 2/4/13.
 //  Copyright (c) 2013 City of Bloomington. All rights reserved.
 //
+//  Modified by Samuel Rivera.
+//  Copyright (c) 2016 Rock Solid Technologies, Inc.
+
 
 #import "Report.h"
 #import "Preferences.h"
 #import "Strings.h"
 #import "Open311.h"
-//#import "AFJSONRequestOperation.h"
 #import "AFHTTPRequestOperationManager.h"
 #import "AFNetworking.h"
 
@@ -51,11 +53,14 @@ NSString * const kPostData          = @"postData";
         NSString *email     = [prefs stringForKey:kOpen311_Email];
         NSString *phone     = [prefs stringForKey:kOpen311_Phone];
         NSString *cedula     = [prefs stringForKey:kOpen311_Cedula];
+        NSString *province     = [prefs stringForKey:kOpen311_Province];
+        
         if (firstname != nil) { _postData[kOpen311_FirstName] = firstname; }
         if (lastname  != nil) { _postData[kOpen311_LastName]  = lastname; }
         if (email     != nil) { _postData[kOpen311_Email]     = email; }
         if (phone     != nil) { _postData[kOpen311_Phone]     = phone; }
         if (cedula    != nil) { _postData[kOpen311_Cedula]    = cedula; }
+        if (province    != nil) { _postData[kOpen311_Province]    = province; }
     }
     return self;
 }
@@ -82,7 +87,7 @@ NSString * const kPostData          = @"postData";
     if (_service)           { output[kService]           = _service; }
     if (_serviceDefinition) { output[kServiceDefinition] = _serviceDefinition; }
     if (_serviceRequest)    { output[kServiceRequest]    = _serviceRequest; }
-    if (_requestedDate)    { output[kRequestedDate]    = _requestedDate; }
+    if (_requestedDate)     { output[kRequestedDate]    = _requestedDate; }
     if (_postData)          { output[kPostData]          = _postData; }
     return [NSDictionary dictionaryWithDictionary:output];
 }

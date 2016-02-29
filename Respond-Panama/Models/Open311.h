@@ -12,6 +12,7 @@
 #import "AFHTTPRequestOperation.h"
 #import "CoreLocation/CoreLocation.h"
 
+extern NSString * const kNotification_ProvincesListReady;
 extern NSString * const kNotification_ServiceListReady;
 extern NSString * const kNotification_ServiceDefinitionReady;
 extern NSString * const kNotification_RefreshServiceRequestReady;
@@ -24,6 +25,7 @@ extern NSString * const kNotification_PostFailed;
 @property (readonly) NSDictionary *endpointParameters;
 @property (readonly) NSMutableArray *groups;
 @property (readonly) NSMutableArray *accounts;
+@property (readonly) NSMutableArray *provinces;
 @property (readonly) NSMutableArray *services;
 @property (readonly) NSMutableDictionary *accountsDefinitions;
 @property (readonly) NSMutableDictionary *serviceDefinitions;
@@ -45,6 +47,7 @@ extern NSString * const kNotification_PostFailed;
 - (void)loadAccountList;
 - (void)clearGpsCity;
 - (void)loadAccountDefinitions;
+- (void)loadProvincesDefinitions;
 - (NSArray *)getServicesForGroup:(NSString *)group;
 - (void) getServicesForAccount:(NSDictionary *)account;
 
