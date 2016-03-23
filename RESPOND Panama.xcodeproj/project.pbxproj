@@ -574,7 +574,7 @@
 				ORGANIZATIONNAME = "Rock Solid Technologies";
 				TargetAttributes = {
 					69ED14DC16B2EE4C00232245 = {
-						DevelopmentTeam = PHW4YJV577;
+						DevelopmentTeam = 9CWSBLEHHE;
 					};
 				};
 			};
@@ -826,13 +826,14 @@
 		69ED151716B2EE4D00232245 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Autoridad Nacional para la Innovacion Gubernamental (9CWSBLEHHE)";
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Respond-Panama/Supporting Files/RESPOND Panama-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Respond-Panama/Supporting Files/RESPOND Panama-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "RESPOND Panama";
+				PROVISIONING_PROFILE = "80c8093b-2fa3-4eda-bf1e-2800f8e9222e";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -841,13 +842,14 @@
 		69ED151816B2EE4D00232245 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Autoridad Nacional para la Innovacion Gubernamental (9CWSBLEHHE)";
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Respond-Panama/Supporting Files/RESPOND Panama-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Respond-Panama/Supporting Files/RESPOND Panama-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "RESPOND Panama";
+				PROVISIONING_PROFILE = "80c8093b-2fa3-4eda-bf1e-2800f8e9222e";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

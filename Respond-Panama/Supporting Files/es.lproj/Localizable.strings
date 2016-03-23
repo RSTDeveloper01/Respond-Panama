@@ -1,5 +1,5 @@
 "title_home"="Inicio";
-"app_title"="RESPOND 3-1-1";
+"app_title"="311 Panamá";
 "help_title"="Ayuda";
 "help_text" ="Esta aplicación es utilizada para reportar asuntos a los municipios de Puerto Rico. Para comenzar, vaya a 'Mi Info' y provea su información personal. Haga clic en 'Nuevo Reporte' para reportar un asunto. Favor de tomar una foto del asunto y permítanos utilizar su localización para encontrar el lugar del problema con más facilidad. ¡Gracias por hacer a Puerto Rico mejor!";
 "menu_settings"="Mi Info";
@@ -11,7 +11,7 @@
 "servers"="Reportar A";
 "button_add_server"="Añadir Servidor";
 "button_accept_error"="Rechazar";
-"reporting_as"="Reportando como";
+"reporting_as"="Reportado por";
 "current_location"="Localización Actual";
 "location_not_available"="No disponible";
 "first_name"="Nombre";
@@ -50,7 +50,7 @@
 "report_description"="Descripción del problema";
 "report_date"="Reportado";
 "agency_responsible"="Agencia";
-"submit"="Someter";
+"submit"="Enviar";
 "cancel"="Cancelar";
 "delete"="Borrar";
 "save"="Guardar";
@@ -62,3 +62,4 @@
 "failure_posting_service"="Falló el proceso de someter su solicitud";
 "error_403"="Esta aplicación no tiene permisos";
 "info_topic_header"="Tópico Informativo";
+"provide_details"="Favor de proveer más información";

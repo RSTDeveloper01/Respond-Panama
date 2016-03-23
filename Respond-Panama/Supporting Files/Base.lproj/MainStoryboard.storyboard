@@ -692,7 +692,7 @@
                         <outlet property="archiveLabel" destination="KJ4-dC-2LZ" id="aLY-3d-hHP"/>
                         <outlet property="personalInfoLabel" destination="RlT-6h-Q7B" id="6lX-Ab-H0Q"/>
                         <outlet property="reportLabel" destination="AAi-5P-PwW" id="DEb-gA-efd"/>
-                        <outlet property="reportingAsLabel" destination="ohK-73-wme" id="5Ey-TV-lew"/>
+                        <outlet property="reportingAsLabel" destination="ohK-73-wme" id="DsF-BC-e1v"/>
                         <outlet property="splashImage" destination="i73-RP-HOs" id="jpW-Jq-vfp"/>
                         <segue destination="AwV-Tf-YDd" kind="push" identifier="SegueToChooseServiceFromAccount" id="fb8-wb-fSs"/>
                     </connections>

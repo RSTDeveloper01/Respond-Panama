@@ -235,8 +235,10 @@ static NSString * const kSegueToSettings        = @"SegueToSettings";
     
     
     if(_report.postData[kOpen311_Media]==nil &&
-       (_report.postData[kOpen311_AddressString] == nil || [_report.postData[kOpen311_AddressString] isEqualToString:@""])&&
-       (_report.postData[kOpen311_Description] ==nil || [_report.postData[kOpen311_Description] isEqualToString:@""])){
+       (_report.postData[kOpen311_AddressString] == nil || [_report.postData[kOpen311_AddressString] isEqualToString:@""])
+       &&
+       (_report.postData[kOpen311_Description] ==nil || [_report.postData[kOpen311_Description] isEqualToString:@""])
+       ){
         UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:nil message:NSLocalizedString(kUI_PleaseProvideDetails, nil)delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK",nil];
         [alertView show];
         return;
