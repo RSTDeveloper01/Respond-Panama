@@ -63,3 +63,5 @@
 "failure_posting_service"="Posting report failed";
 "error_403"="This app does not have permission";
 "info_topic_header"="Informational Topic";
+"photos_permission_warning_title"="";
+"photos_permission_warning"="";

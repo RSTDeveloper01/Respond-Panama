@@ -231,7 +231,7 @@ static NSString * const kSegueToSettings        = @"SegueToSettings";
         [alertView show];
         return;
     }
-       
+        
     
     
     if(_report.postData[kOpen311_Media]==nil &&
@@ -514,12 +514,12 @@ static NSString * const kSegueToSettings        = @"SegueToSettings";
             
             ALAuthorizationStatus status = [ALAssetsLibrary authorizationStatus];
             
-            if (status != ALAuthorizationStatusAuthorized) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(kUI_PhotosPermissionTitle, nil) message:NSLocalizedString(kUI_PhotosPermission, nil) delegate:nil cancelButtonTitle:NSLocalizedString(kUI_Cancel, nil) otherButtonTitles:nil, nil];
-                [alert show];
-                [tableView deselectRowAtIndexPath:indexPath animated:YES];
-                return;
-            }
+           // if (status != ALAuthorizationStatusAuthorized) {
+           //     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(kUI_PhotosPermissionTitle, nil) message:NSLocalizedString(kUI_PhotosPermission, nil) delegate:nil cancelButtonTitle:NSLocalizedString(kUI_Cancel, nil) otherButtonTitles:nil, nil];
+          //      [alert show];
+            //    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+           //     return;
+           // }
             
             UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(kUI_ChooseMediaSource, nil)
                                                                delegate:self
