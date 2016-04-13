@@ -58,7 +58,7 @@ static CGFloat    const kMediaCellHeight = 122;
     }
 }
 
-#pragma Service Request Refreshing
+#pragma mark Service Request Refreshing
 - (void)startRefreshingServiceRequest
 {
     NSDictionary *sr = _report.serviceRequest;
@@ -103,7 +103,7 @@ static CGFloat    const kMediaCellHeight = 122;
         }
         return 1;
     }
-    return 3;
+    return 4;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -168,22 +168,26 @@ static CGFloat    const kMediaCellHeight = 122;
 
         switch (indexPath.row) {
             case 0:
+                cell.textLabel.text = NSLocalizedString(kOpen311_CaseNumber, nil);
+                cell.detailTextLabel.text = (sr && sr[kOpen311_CaseNumber]!=[NSNull null]) ? sr[kOpen311_CaseNumber] : @"";
+                break;
+            case 1:
                 cell.textLabel.text = NSLocalizedString(kUI_ReportDate, nil);
                 
                 cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",
                                              [dateFormatter stringFromDate:_report.requestedDate]];
                 break;
 
-            case 1:
+            case 2:
                 cell.textLabel.text = NSLocalizedString(kUI_ReportStatus, nil);
                 cell.detailTextLabel.text = (sr && sr[kOpen311_Status]!=[NSNull null]) ? sr[kOpen311_Status] : kUI_Pending;
                 break;
                 
-            case 2:
+            case 3:
                 cell.textLabel.text = NSLocalizedString(kOpen311_AgencyResponsible, nil);
                 cell.detailTextLabel.text = (sr && sr[kOpen311_AgencyResponsible]!=[NSNull null]) ? sr[kOpen311_AgencyResponsible] : @"";
                 break;
-                
+                           
             default:
                 break;
         }

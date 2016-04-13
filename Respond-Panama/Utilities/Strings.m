@@ -125,6 +125,7 @@ NSString * const kOpen311_ServiceRequestId   = @"service_request_id";
 NSString * const kOpen311_Token              = @"token";
 NSString * const kRst_Account                = @"account";
 NSString * const kRst_ReportedTo             = @"reported_to";
+NSString * const kOpen311_CaseNumber         = @"case_number";
 // Personal Information fields
 NSString * const kOpen311_FirstName = @"first_name";
 NSString * const kOpen311_LastName  = @"last_name";

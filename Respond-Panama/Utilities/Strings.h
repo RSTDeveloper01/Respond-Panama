@@ -122,6 +122,7 @@ extern NSString * const kOpen311_ServiceRequestId;
 extern NSString * const kOpen311_Token;
 extern NSString * const kRst_Account;
 extern NSString * const kRst_ReportedTo;
+extern NSString * const kOpen311_CaseNumber;
 // Personal Information fields
 extern NSString * const kOpen311_FirstName;
 extern NSString * const kOpen311_LastName;

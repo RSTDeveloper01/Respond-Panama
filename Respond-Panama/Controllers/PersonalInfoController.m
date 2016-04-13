@@ -13,13 +13,16 @@
 #import "Strings.h"
 #import "Open311.h"
 
-@interface PersonalInfoController (){
+@interface PersonalInfoController()  {
     NSArray *provinces;
+    
 }
 
 @end
 
 @implementation PersonalInfoController
+
+
 
 - (void)viewDidLoad
 {
@@ -41,29 +44,50 @@
     self.textFieldEmail    .text = [preferences stringForKey:kOpen311_Email];
     self.textFieldPhone    .text = [preferences stringForKey:kOpen311_Phone];
     self.textFieldProvince .text = [preferences stringForKey:kOpen311_Province];
-
+    
     provinces = [[NSArray alloc]init];
     provinces = [[Open311 sharedInstance] provinces];
     [self.textFieldProvince setInputView: self.provincePickerView];
+    
+    self.textFieldCedula.delegate = self; // ADD THIS LINE
+    
+    self.navigationItem.hidesBackButton = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [super viewWillDisappear:animated];
+ 
+        [super viewWillDisappear:animated];
+ 
 }
 
 -(IBAction)done:(id)sender
 {
-    NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
-    [preferences setValue:self.textFieldFirstName.text forKey:kOpen311_FirstName];
-    [preferences setValue:self.textFieldLastName .text forKey:kOpen311_LastName];
-    [preferences setValue:self.textFieldCedula   .text forKey:kOpen311_Cedula];
-    [preferences setValue:self.textFieldEmail    .text forKey:kOpen311_Email];
-    [preferences setValue:self.textFieldPhone    .text forKey:kOpen311_Phone];
-    [preferences setValue:self.textFieldProvince .text forKey:kOpen311_Province];
-
-    //[self.navigationController popViewControllerAnimated:YES];
-    [self.delegate personalInfoUpdated:YES];
+    if(validateCedula(self.textFieldCedula.text))
+    {
+        
+        NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
+        [preferences setValue:self.textFieldFirstName.text forKey:kOpen311_FirstName];
+        [preferences setValue:self.textFieldLastName .text forKey:kOpen311_LastName];
+        [preferences setValue:self.textFieldCedula   .text forKey:kOpen311_Cedula];
+        [preferences setValue:self.textFieldEmail    .text forKey:kOpen311_Email];
+        [preferences setValue:self.textFieldPhone    .text forKey:kOpen311_Phone];
+        [preferences setValue:self.textFieldProvince .text forKey:kOpen311_Province];
+        
+        
+        //[self.navigationController popViewControllerAnimated:YES];
+        [self.delegate personalInfoUpdated:YES];
+    }
+    else{
+        
+        
+        UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Formato Inválido"
+                                                     message:@"Formato esperado: 8-1311-13612, 10-111-436, 8-AV-134-143, 8-PI-1-123, 7-SB-23-543"
+                                                    delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [av show];
+        
+        
+    }
 }
 
 #pragma mark - Picker View handlers
@@ -132,7 +156,7 @@
 {
     //return NSLocalizedString(kUI_PersonalInfo, nil);
     return @"";
- 
+    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -161,5 +185,37 @@
     }
     return YES;
 }
+
+- (BOOL) textFieldShouldEndEditing:(UITextField *)textField
+{
+    if (textField == self.textFieldCedula ) { // Cedula is an outlet
+        
+        _Bool isvalid = validateCedula(textField.text);
+        if(!isvalid)
+        {
+            UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Formato Inválido"
+                                                         message:@"Formato esperado: 8-1311-13612, 10-111-436, 8-AV-134-143, 8-PI-1-123, 7-SB-23-543"
+                                                        delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [av show];
+        }
+        
+        return isvalid;
+        
+    }
+    return YES;
+}
+
+
+BOOL *validateCedula(NSString* fieldValue)
+{
+    NSString *regEx = @"^(?:((?:[1-9]|10)(AV)?)|((?:E|N|PE)+))-(\\d{1,4})-(\\d{1,5})";
+    NSRange r = [fieldValue rangeOfString:regEx options:NSRegularExpressionSearch];
+    if (r.location == NSNotFound && ![fieldValue isEqualToString:@""]) {
+        
+        return FALSE;
+    }
+    return TRUE;
+}
+
 
 @end
