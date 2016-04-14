@@ -1,7 +1,7 @@
 "title_home"="Home";
 "app_title"="311 Panamá";
 "help_title"="Help";
-"help_text" ="This app is used to report issues to the municipalities of Puerto Rico.  To get started, go to 'My Info' to record your personal information.  Click “New Report” to report an issue.  Please take a picture of the issue and allow us to use your GIS to locate the problem.  Use the “My Reports” feature to check the status of your reported issues.  Thank you for improving Puerto Rico!";
+"help_text" ="This application is used to report complaints, ideas and suggestions about the Government of Panama. To get started, go to Settings to record your personal information. Click 'New Report' to report an issue. Please take a picture of the issue and allow us to use your GIS to locate the problem.  Use the 'My Reports' feature to check the status of your reported issues.\n\nThank you for using 311 Panamá and helping us optimize services delivery in Panamá!";
 "menu_settings"="My Info";
 "menu_report"="New Report";
 "menu_archive"="My Reports";
