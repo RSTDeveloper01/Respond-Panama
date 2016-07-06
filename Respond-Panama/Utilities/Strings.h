@@ -106,6 +106,7 @@ extern NSString * const kOpen311_UserInfo;
 extern NSString * const kOpen311_SelectACity;
 extern NSString * const kOpen311_AddressString;
 extern NSString * const kOpen311_Description;
+extern NSString * const kOpen311_AdditionalAddressInfo;
 extern NSString * const kOpen311_ServiceNotice;
 extern NSString * const kOpen311_AccountId;
 extern NSString * const kOpen311_Status;

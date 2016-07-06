@@ -35,6 +35,8 @@
 	<string>16</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>UIRequiresPersistentWiFi</key>
+	<true/>
 	<key>UILaunchImageFile</key>
 	<string>Default</string>
 	<key>UILaunchImageFile~iphone</key>
@@ -45,6 +47,7 @@
 	<array>
 		<string>location-services</string>
 		<string>armv7</string>
+		<string>gps</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>

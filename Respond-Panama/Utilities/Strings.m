@@ -109,6 +109,7 @@ NSString * const kOpen311_SelectACity        = @"select_a_city";
 NSString * const kOpen311_SelectAProvince    = @"select_a_province";
 NSString * const kOpen311_AddressString      = @"address_string";
 NSString * const kOpen311_Description        = @"description";
+NSString * const kOpen311_AdditionalAddressInfo  = @"additional_address_info";
 NSString * const kOpen311_ServiceNotice      = @"service_notice";
 NSString * const kOpen311_AccountId 	     = @"account_id";
 NSString * const kOpen311_Status 		     = @"status";

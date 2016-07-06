@@ -28,6 +28,7 @@
 
 @property NSDictionary *service;
 @property (strong, nonatomic) IBOutlet UILabel *personalInfoLabel;
+@property (strong, nonatomic) IBOutlet UILabel *additionalAddressLabel;
 @property Report *report;
 - (IBAction)done:(id)sender;
 - (IBAction)share:(id)sender;

@@ -832,7 +832,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Respond-Panama/Supporting Files/RESPOND Panama-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Respond-Panama/Supporting Files/RESPOND Panama-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "RESPOND Panama";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -849,7 +849,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Respond-Panama/Supporting Files/RESPOND Panama-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Respond-Panama/Supporting Files/RESPOND Panama-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "RESPOND Panama";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
