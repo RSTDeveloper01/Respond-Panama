@@ -516,9 +516,9 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                             </textView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" ambiguous="YES" misplaced="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YYo-ip-Hfu">
-                                <rect key="frame" x="20" y="72" width="280" height="150"/>
+                                <rect key="frame" x="20" y="72" width="280" height="90"/>
                                 <string key="text">Indique la descripción de la localización de manera detallada incluyendo Distrito, Corregimiento, Barriada y Lugar Poblado si lo conoce. De no proveer esta información su caso pudiese ser cerrado.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
