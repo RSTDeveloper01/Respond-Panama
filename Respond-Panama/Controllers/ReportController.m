@@ -242,14 +242,6 @@ static NSString * const kSegueToSettings        = @"SegueToSettings";
         return;
     }
     
-    if(_report.postData[kOpen311_AdditionalAddressInfo] ==nil || [_report.postData[kOpen311_AdditionalAddressInfo] isEqualToString:@""])
-                        {
-                            UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Indique la descripción de la localización de manera detallada incluyendo Distrito, Corregimiento y Lugar Poblado si lo conoce. De no proveer esta información su caso pudiese ser cerrado." delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK",nil];
-                            [alertView show];
-                            return;
-                            
-                        }
-    
     
     if(_report.postData[kOpen311_Media]==nil &&
        (_report.postData[kOpen311_AddressString] == nil || [_report.postData[kOpen311_AddressString] isEqualToString:@""])
@@ -260,6 +252,16 @@ static NSString * const kSegueToSettings        = @"SegueToSettings";
         [alertView show];
         return;
     }
+    if(_report.postData[kOpen311_AdditionalAddressInfo] ==nil || [_report.postData[kOpen311_AdditionalAddressInfo] isEqualToString:@""])
+                        {
+                            UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Indique la descripción de la localización de manera detallada incluyendo Distrito, Corregimiento y Lugar Poblado si lo conoce. De no proveer esta información su caso pudiese ser cerrado." delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK",nil];
+                            [alertView show];
+                            return;
+                            
+                        }
+    
+    
+    
     
     
     
@@ -586,7 +588,7 @@ static NSString * const kSegueToSettings        = @"SegueToSettings";
 
     
     // If this is data entry for an attribute, send the attribute definition
-    if (currentIndexPath.section == 2) {
+    if (currentIndexPath.section == 3) {
         NSDictionary *attribute = _report.serviceDefinition[kOpen311_Attributes][currentIndexPath.row];
         [segue.destinationViewController setAttribute:attribute];
         // The fieldname is different from the attribute code.
@@ -613,6 +615,17 @@ static NSString * const kSegueToSettings        = @"SegueToSettings";
                                         };
             [segue.destinationViewController setAttribute:attribute];
             [segue.destinationViewController setCurrentValue:_report.postData[kOpen311_Description]];
+        }
+        if ([fieldname isEqualToString:kOpen311_AdditionalAddressInfo]) {
+            // Create an attribute definition so we can use the same TextController
+            // that all the other attribute definitions use
+            NSDictionary *attribute = @{
+                                        kOpen311_Code       :kOpen311_AdditionalAddressInfo,
+                                        kOpen311_Datatype   :kOpen311_Text,
+                                        kOpen311_Description:NSLocalizedString(kUI_ReportAdditionalAddress, nil)
+                                        };
+            [segue.destinationViewController setAttribute:attribute];
+            [segue.destinationViewController setCurrentValue:_report.postData[kOpen311_AdditionalAddressInfo]];
         }
     }
     

@@ -48,6 +48,7 @@
 "report_status"="Estatus";
 "report_attributes"="Atributos";
 "report_description"="Descripción del problema";
+"report_additionaladdress"="Indique la descripción de la localización de manera detallada incluyendo Distrito, Corregimiento, Barriada y Lugar Poblado si lo conoce. De no proveer esta información su caso pudiese ser cerrado.";
 "report_date"="Reportado";
 "agency_responsible"="Agencia";
 "submit"="Enviar";

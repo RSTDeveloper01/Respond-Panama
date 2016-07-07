@@ -63,6 +63,7 @@ NSString * const kUI_Satellite              = @"map_button_satellite";
 NSString * const kUI_ReportStatus           = @"report_status";
 NSString * const kUI_ReportAttributes       = @"report_attributes";
 NSString * const kUI_ReportDescription      = @"report_description";
+NSString * const kUI_ReportAdditionalAddress      = @"report_additionaladdress";
 NSString * const kUI_ReportDate             = @"report_date";
 NSString * const kUI_Submit                 = @"submit";
 NSString * const kUI_Share                  = @"share";
