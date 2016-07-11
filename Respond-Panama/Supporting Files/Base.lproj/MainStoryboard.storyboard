@@ -507,22 +507,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YYo-ip-Hfu">
-                                <rect key="frame" x="20" y="72" width="280" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="250" misplaced="YES" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YYo-ip-Hfu">
+                                <rect key="frame" x="20" y="72" width="280" height="101"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" maximumZoomScale="5" translatesAutoresizingMaskIntoConstraints="NO" id="sdk-DQ-5Gv">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" maximumZoomScale="5" translatesAutoresizingMaskIntoConstraints="NO" id="sdk-DQ-5Gv">
                                 <rect key="frame" x="20" y="101" width="280" height="173"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="175" id="9UL-GT-WNc"/>
+                                </constraints>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="sdk-DQ-5Gv" firstAttribute="leading" secondItem="vcQ-Xb-zhc" secondAttribute="leadingMargin" constant="4" id="Fba-jl-GCx"/>
+                            <constraint firstAttribute="centerX" secondItem="YYo-ip-Hfu" secondAttribute="centerX" id="MmA-A9-6Q6"/>
+                            <constraint firstItem="YYo-ip-Hfu" firstAttribute="top" secondItem="al2-yk-qtR" secondAttribute="bottom" constant="8" id="TLC-8h-EFP"/>
+                            <constraint firstItem="sdk-DQ-5Gv" firstAttribute="bottom" relation="lessThanOrEqual" secondItem="84d-7s-sIC" secondAttribute="top" constant="-200" id="cvL-lR-4eb"/>
+                            <constraint firstItem="sdk-DQ-5Gv" firstAttribute="width" secondItem="YYo-ip-Hfu" secondAttribute="width" id="fGG-Kh-hSb"/>
+                            <constraint firstItem="YYo-ip-Hfu" firstAttribute="leading" secondItem="vcQ-Xb-zhc" secondAttribute="leadingMargin" constant="4" id="fcf-km-RgB"/>
+                            <constraint firstItem="sdk-DQ-5Gv" firstAttribute="top" secondItem="YYo-ip-Hfu" secondAttribute="bottom" constant="8" id="mR2-zt-mld"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="8vZ-6B-JBs">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="8YP-mr-nQw">
