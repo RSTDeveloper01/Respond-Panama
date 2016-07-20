@@ -120,7 +120,7 @@ static NSString * const kSegueToSettings        = @"SegueToSettings";
         
         //Ricardo added this
         [fields addObject:@[
-                            @{kFieldname:kOpen311_AdditionalAddressInfo, kLabel:@"Detalles Adicionales de Dirección", kType:kOpen311_Text}
+                            @{kFieldname:kOpen311_AdditionalAddressInfo, kLabel:@"Detalles Adicionales de Ubicación", kType:kOpen311_Text}
                             ]];
         
        
@@ -254,7 +254,7 @@ static NSString * const kSegueToSettings        = @"SegueToSettings";
     }
     if(_report.postData[kOpen311_AdditionalAddressInfo] ==nil || [_report.postData[kOpen311_AdditionalAddressInfo] isEqualToString:@""])
                         {
-                            UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Indique la descripción de la localización de manera detallada incluyendo Distrito, Corregimiento y Lugar Poblado si lo conoce. De no proveer esta información su caso pudiese ser cerrado." delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK",nil];
+                            UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:nil message:NSLocalizedString(kUI_ReportAdditionalAddress,nil) delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK",nil];
                             [alertView show];
                             return;
                             

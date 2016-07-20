@@ -57,6 +57,10 @@ static CLLocationDegrees const kLongitudeDelta = 0.0025;
         locationManager.delegate = self;
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
         locationManager.distanceFilter = 50;
+        
+        if([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+            [locationManager requestWhenInUseAuthorization];
+        
         [locationManager startUpdatingLocation];
         
     }

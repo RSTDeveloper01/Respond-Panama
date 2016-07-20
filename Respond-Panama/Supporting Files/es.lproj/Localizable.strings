@@ -48,7 +48,7 @@
 "report_status"="Estatus";
 "report_attributes"="Atributos";
 "report_description"="Descripción del problema";
-"report_additionaladdress"="Indique la descripción de la localización de manera detallada incluyendo Distrito, Corregimiento, Barriada y Lugar Poblado si lo conoce. De no proveer esta información su caso pudiese ser cerrado.";
+"report_additionaladdress"="Para ofrecer un mejor servicio y que su caso sea canalizado adecuadamente le solicitamos que incluya tantos detalles como sea posible. (Ej. Bethania, El Dorado, Dos Mares, Calle 3ra, Casa j-13a. En la acera a lado del ficus)";
 "report_date"="Reportado";
 "agency_responsible"="Agencia";
 "submit"="Enviar";
