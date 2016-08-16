@@ -31,6 +31,22 @@
 
 - (IBAction)done:(id)sender
 {
+    NSUInteger characterCount = [self.textView.text length];
+    
+	if(characterCount > 0 && characterCount < 20)
+    {
+        UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:nil message:NSLocalizedString(kUI_MinCharactersError,nil) delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK",nil];
+        [alertView show];
+        return;
+        
+    }
+    
+    
+    
     [self.delegate didProvideValue:self.textView.text];
+    
+    
+    
+    
 }
 @end

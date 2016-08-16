@@ -48,7 +48,10 @@
 "report_status"="Estatus";
 "report_attributes"="Atributos";
 "report_description"="Descripción del problema";
-"report_additionaladdress"="Para ofrecer un mejor servicio y que su caso sea canalizado adecuadamente le solicitamos que incluya tantos detalles como sea posible. (Ej. Bethania, El Dorado, Dos Mares, Calle 3ra, Casa j-13a. En la acera a lado del ficus)";
+"report_description_full"="Para ofrecer un mejor servicio y que su caso sea canalizado adecuadamente le solicitamos que incluya tantos detalles sea posible. (Ej. Tubería rota debajo del puente desde hace 48 hrs. Estamos sin suministro)";
+"report_additionaladdress"="Para ofrecer un mejor servicio y que su caso sea canalizado adecuadamente le solicitamos que incluya tantos detalles sea posible. (Ej. Bethania, El Dorado, Dos Mares, Calle 3ra, Casa J-13. En la acera al lado del ficus).";
+"report_additionaladdress_short"="Detalles adicionales de ubicación";
+"report_min_characters"="Debe ingresar al menos 20 caracteres";
 "report_date"="Reportado";
 "agency_responsible"="Agencia";
 "submit"="Enviar";
@@ -58,6 +61,7 @@
 "pending"="Pendiente";
 "yes"="Sí";
 "no"="No";
+"accept"="Aceptar";
 "uncategorized"="Sin Categoría";
 "failure_loading_services"="No se pudo cargar información de servicios";
 "failure_posting_service"="Falló el proceso de someter su solicitud";
@@ -65,3 +69,5 @@
 "info_topic_header"="Tópico Informativo";
 "provide_details"="Favor de proveer más información";
 "case_number"="Número de Caso";
+"report_disclaimer_msg"="La información que está enviando para atender su caso está sujeta a revisión por el 311. Si la información de descripción y localización no está completa su caso puede ser descartado. ¿Desea continuar con el envío de su caso?";
+"report_disclaimer_title"="Advertencia";

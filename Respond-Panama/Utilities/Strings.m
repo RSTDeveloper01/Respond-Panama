@@ -63,7 +63,9 @@ NSString * const kUI_Satellite              = @"map_button_satellite";
 NSString * const kUI_ReportStatus           = @"report_status";
 NSString * const kUI_ReportAttributes       = @"report_attributes";
 NSString * const kUI_ReportDescription      = @"report_description";
+NSString * const kUI_ReportDescriptionFull      = @"report_description_full";
 NSString * const kUI_ReportAdditionalAddress      = @"report_additionaladdress";
+NSString * const kUI_ReportAdditionalAddressShort      = @"report_additionaladdress_short";
 NSString * const kUI_ReportDate             = @"report_date";
 NSString * const kUI_Submit                 = @"submit";
 NSString * const kUI_Share                  = @"share";
@@ -76,6 +78,7 @@ NSString * const kUI_OutOfPRNotice          = @"out_of_PR_notice";
 NSString * const kUI_PleaseProvideDetails   = @"provide_details";
 NSString * const kUI_Yes                    = @"yes";
 NSString * const kUI_No                     = @"no";
+NSString * const kUI_Accept                     = @"accept";
 NSString * const kUI_Uncategorized          = @"uncategorized";
 NSString * const kUI_ServiceRequestRemovedTitle = @"service_removed_title";
 NSString * const kUI_ServiceRequestRemovedQuestion = @"service_removed_message";
@@ -84,7 +87,9 @@ NSString * const kUI_FailureLoadingServices = @"failure_loading_services";
 NSString * const kUI_FailurePostingService  = @"failure_posting_service";
 NSString * const kUI_Error403               = @"error_403";
 NSString * const kUI_CommError              = @"general_communication_error";
-
+NSString * const kUI_MinCharactersError              = @"report_min_characters";
+NSString * const kUI_ReportDisclaimerMsg              = @"report_disclaimer_msg";
+NSString * const kUI_ReportDisclaimerTitle              = @"report_disclaimer_title";
 
 // Open311 Key Strings
 // Global required fields

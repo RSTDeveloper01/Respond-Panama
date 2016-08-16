@@ -62,7 +62,9 @@ extern NSString * const kUI_Satellite;
 extern NSString * const kUI_ReportStatus;
 extern NSString * const kUI_ReportAttributes;
 extern NSString * const kUI_ReportDescription;
+extern NSString * const kUI_ReportDescriptionFull;
 extern NSString * const kUI_ReportAdditionalAddress;
+extern NSString * const kUI_ReportAdditionalAddressShort;
 extern NSString * const kUI_ReportDate;
 extern NSString * const kUI_Submit;
 extern NSString * const kUI_Share;
@@ -77,12 +79,16 @@ extern NSString * const kUI_OutOfPRNotice;
 extern NSString * const kUI_PleaseProvideDetails;
 extern NSString * const kUI_Yes;
 extern NSString * const kUI_No;
+extern NSString * const kUI_Accept;
 extern NSString * const kUI_Uncategorized;
 extern NSString * const kUI_FailureLoadingServices;
 extern NSString * const kUI_ServiceRequestFailure;
 extern NSString * const kUI_FailurePostingService;
 extern NSString * const kUI_Error403;
 extern NSString * const kUI_CommError;
+extern NSString * const kUI_MinCharactersError;
+extern NSString * const kUI_ReportDisclaimerTitle;
+extern NSString * const kUI_ReportDisclaimerMsg;
 
 // Open311 Key Strings
 // Global required fields

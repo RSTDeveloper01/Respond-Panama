@@ -49,6 +49,10 @@
 "report_status"="Status";
 "report_attributes"="Attributes";
 "report_description"="Description of problem";
+"report_description_full"="To provide a better assistance so that your case gets channeled properly we request that you include as many details as possible. (Eg. Broken pipe under the bridge since 48 hrs ago. We are without water)";
+"report_additionaladdress"="To provide a better assistance so that your case gets channeled properly we request that you include as many details as possible. (Eg. Bethania, El Dorado, Dos Mares, 3rd Street, House J-13. On the sidewalk next to the ficus).";
+"report_additionaladdress_short"="Location details";
+"report_min_characters"="You must enter at least 20 characters";
 "report_date"="Reported Date";
 "agency_responsible"="Department Responsible";
 "submit"="Submit";
@@ -58,6 +62,7 @@
 "pending"="Pending";
 "yes"="Yes";
 "no"="No";
+"accept"="Accept";
 "uncategorized"="Uncategorized";
 "failure_loading_services"="Failed to load service information";
 "failure_posting_service"="Posting report failed";
@@ -67,3 +72,7 @@
 "photos_permission_warning"="";
 "case_number"="Case Number";
 "provide_details"="Please provide more information";
+"report_disclaimer_msg" = "The information that you are about to send is subject to review by the 311. If the description and location information is not complete, your case may be dismissed. Do you want to continue?";
+"report_disclaimer_title" = "Warning";
+
+

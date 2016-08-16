@@ -120,7 +120,7 @@ static NSString * const kSegueToSettings        = @"SegueToSettings";
         
         //Ricardo added this
         [fields addObject:@[
-                            @{kFieldname:kOpen311_AdditionalAddressInfo, kLabel:@"Detalles Adicionales de Ubicación", kType:kOpen311_Text}
+                            @{kFieldname:kOpen311_AdditionalAddressInfo, kLabel:NSLocalizedString(kUI_ReportAdditionalAddressShort, nil), kType:kOpen311_Text}
                             ]];
         
        
@@ -261,11 +261,27 @@ static NSString * const kSegueToSettings        = @"SegueToSettings";
                         }
     
     
+    UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:NSLocalizedString(kUI_ReportDisclaimerTitle,nil) message:NSLocalizedString(kUI_ReportDisclaimerMsg,nil) delegate:self cancelButtonTitle:NSLocalizedString(kUI_Cancel,nil)  otherButtonTitles:NSLocalizedString(kUI_Accept,nil),nil];
+    alertView.tag = 2;
+    [alertView show];
+    return;
+
     
     
     
     
-    busyIcon = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+}
+
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
+    if(alertView.tag==2){ // If last warning message
+        
+        if([buttonTitle isEqualToString:NSLocalizedString(kUI_Accept,nil)])//OK button pressed
+        {
+            //do something
+            busyIcon = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     busyIcon.center = self.tabBarController.view.center;
     [busyIcon setFrame:self.tabBarController.view.frame];
     [busyIcon setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.5]];
@@ -278,7 +294,14 @@ static NSString * const kSegueToSettings        = @"SegueToSettings";
     [notifications addObserver:self selector:@selector(postFailed)    name:kNotification_PostFailed    object:open311];
     
     [open311 startPostingServiceRequest:_report];
+        }
+        else if([buttonTitle isEqualToString:NSLocalizedString(kUI_Cancel,nil)])//Cancel button pressed.
+        {
+            //do something
+        }
+    }
 }
+
 
 - (void)serviceDefinitionReady
 {
@@ -611,7 +634,7 @@ static NSString * const kSegueToSettings        = @"SegueToSettings";
             NSDictionary *attribute = @{
                                         kOpen311_Code       :kOpen311_Description,
                                         kOpen311_Datatype   :kOpen311_Text,
-                                        kOpen311_Description:NSLocalizedString(kUI_ReportDescription, nil)
+                                        kOpen311_Description:NSLocalizedString(kUI_ReportDescriptionFull, nil)
                                         };
             [segue.destinationViewController setAttribute:attribute];
             [segue.destinationViewController setCurrentValue:_report.postData[kOpen311_Description]];
