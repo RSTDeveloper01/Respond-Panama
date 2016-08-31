@@ -47,7 +47,6 @@
 	<array>
 		<string>location-services</string>
 		<string>armv7</string>
-		<string>gps</string>
 	</array>
 	<key>UIRequiresPersistentWiFi</key>
 	<true/>
